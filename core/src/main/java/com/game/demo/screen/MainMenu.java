@@ -14,7 +14,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-
+        game.logger.info("Setting Main-Menu Screen");
     }
 
     @Override
@@ -24,7 +24,6 @@ public class MainMenu implements Screen {
         game.updateEnd();
 
         if(Gdx.input.isKeyJustPressed(game.actionKeys.interact)){
-
             newGame();
         }
     }

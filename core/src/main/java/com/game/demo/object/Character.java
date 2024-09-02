@@ -11,9 +11,22 @@ import lombok.Setter;
 @Getter
 public class Character {
     private Rectangle characterBounds;
-    private Texture characterTexture;
     private Vector2 characterPosition;
+    private Texture characterTexture;
     private int characterSpeed;
+
+    public Character(){
+        this.characterBounds = new Rectangle().setWidth(16).setHeight(16);
+        this.characterTexture = new Texture(Gdx.files.internal("hitbox-npc.png"));
+        this.characterPosition = new Vector2(0, 0);
+        this.characterSpeed = 80;
+    }
+    public Character(Vector2 characterPosition, Texture characterTexture){
+        this.characterBounds = new Rectangle().setWidth(16).setHeight(16);
+        this.characterPosition = characterPosition;
+        this.characterTexture = characterTexture;
+        this.characterSpeed = 80;
+    }
 
     public Direction move(){
         return new Direction(this);

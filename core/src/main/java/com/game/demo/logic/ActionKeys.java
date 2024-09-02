@@ -3,6 +3,7 @@ package com.game.demo.logic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.game.demo.Demo;
+import com.game.demo.screen.PauseScreen;
 
 import java.util.List;
 
@@ -25,14 +26,12 @@ public class ActionKeys {
         for(int key : List.of(moveNorth, moveSouth, moveEast, moveWest)){
             if(Gdx.input.isKeyPressed(key)){
                 processInput(key);
-                return;
             }
         }
 
         for(int key : List.of(interact, toggleMenu)){
             if(Gdx.input.isKeyJustPressed(key)){
                 processInput(key);
-                return;
             }
         }
     }
@@ -40,18 +39,30 @@ public class ActionKeys {
     private void processInput(int key){
         if(key == moveNorth){
             game.player.move().north();
+            return;
         }
         if(key == moveSouth){
             game.player.move().south();
+            return;
         }
         if(key == moveEast){
             game.player.move().east();
+            return;
         }
         if(key == moveWest){
             game.player.move().west();
+            return;
         }
-        if(key == interact){}
-        if(key == toggleMenu){}
+        if(key == interact){
+            return;
+        }
+        if(key == toggleMenu){
+            if(!game.paused){
+                game.pause();
+            }else{
+                game.resume();
+            }
+        }
     }
 
     private void setKeys() {

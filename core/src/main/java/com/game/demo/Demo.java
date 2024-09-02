@@ -1,10 +1,13 @@
 package com.game.demo;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.game.demo.logic.ActionKeys;
 import com.game.demo.logic.Log;
@@ -21,6 +24,8 @@ public class Demo extends Game {
 
     public Log logger;
 
+    public boolean paused;
+
     @Override
     public void create() {
         this.logger = new Log();
@@ -29,9 +34,11 @@ public class Demo extends Game {
         this.font = new BitmapFont();
         this.camera = new OrthographicCamera();
         this.camera.setToOrtho(false, 160, 160);
-        this.player = new Character();
+        this.player = new Character(
+            new Vector2(16, 16),
+            new Texture(Gdx.files.internal("hitbox-player.png"))
+        );
         this.actionKeys = new ActionKeys(this);
-        logger.info("Setting Main-Menu Screen");
         setScreen(new MainMenu(this));
     }
 
@@ -42,8 +49,22 @@ public class Demo extends Game {
         this.batch.begin();
     }
 
+    public void updateStart(Character player){
+        updateStart();
+        this.batch.draw(player.getCharacterTexture(), player.getCharacterPosition().x, player.getCharacterPosition().y);
+    }
+
     public void updateEnd(){
         this.batch.end();
         //check for input
+        actionKeys.checkInput();
+    }
+
+    public void pause(){
+
+    }
+
+    public void resume(){
+
     }
 }

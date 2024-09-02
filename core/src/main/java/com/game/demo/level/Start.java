@@ -8,16 +8,17 @@ public class Start implements Screen {
 
     public Start(Demo game) {
         this.game = game;
+
     }
 
     @Override
     public void show() {
-
+        game.logger.info("Setting Start Screen");
     }
 
     @Override
     public void render(float delta) {
-        game.updateStart();
+        game.updateStart(game.player);
         game.font.draw(game.batch, "Start Screen", 8, 160-16);
         game.updateEnd();
     }
