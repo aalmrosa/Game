@@ -22,14 +22,13 @@ public class Demo extends Game {
     public Character player;
     public ActionKeys actionKeys;
 
-    public Log logger;
-
     public boolean paused;
 
     @Override
     public void create() {
-        this.logger = new Log();
-        logger.info("Initializing DEMO");
+        Log.buildLogger();
+        Log.info("Initializing Game Demo");
+
         this.batch = new SpriteBatch();
         this.font = new BitmapFont();
         this.camera = new OrthographicCamera();

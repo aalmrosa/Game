@@ -9,42 +9,43 @@ import java.util.logging.Logger;
 import java.util.logging.Formatter;
 
 public class Log {
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
-    private FileHandler fh;
+    private static final Logger logger = Logger.getLogger("com.game.demo.logic.Log");
 
-    public Log() {
+    public static void buildLogger(){
+        FileHandler fh;
         SimpleDateFormat sdf = new SimpleDateFormat("M-d_HH-mm-ss");
+
         try {
-            fh = new FileHandler("C:/Users/rosaa/IdeaProjects/Demo/assets/log/demo_log_" +
+            fh = new FileHandler("C:/Users/rosaa/IdeaProjects/Demo/assets/files/log/demo_log_" +
                 sdf.format(Calendar.getInstance().getTime()) + ".log");
+
+            fh.setFormatter(new Formatter() {
+                @Override
+                public String format(LogRecord record) {
+                    SimpleDateFormat logTime = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+                    Calendar cal = new GregorianCalendar();
+                    cal.setTimeInMillis(record.getMillis());
+                    return logTime.format(cal.getTime())
+                        + " || "
+                        + String.format("%-7S : ", record.getLevel())
+                        + record.getMessage() + "\n";
+                }
+            });
+            logger.addHandler(fh);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        fh.setFormatter(new Formatter() {
-            @Override
-            public String format(LogRecord record) {
-                SimpleDateFormat logTime = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
-                Calendar cal = new GregorianCalendar();
-                cal.setTimeInMillis(record.getMillis());
-                return String.format("%-7S : ", record.getLevel())
-                    + logTime.format(cal.getTime())
-                    + " || "
-                    + record.getMessage() + "\n";
-            }
-        });
-        logger.addHandler(fh);
     }
 
-    public void info(String message){
+    public static void info(String message){
         logger.info(message);
     }
 
-    public void warning(String message){
+    public static void warning(String message){
         logger.warning(message);
     }
 
-    public void error(String message){
+    public static void error(String message){
         logger.severe(message);
     }
 }
