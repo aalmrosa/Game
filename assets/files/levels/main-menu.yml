@@ -1,0 +1,38 @@
+---
+# OBSTACLES
+obstacles:
+  - position: 0 0
+    size: 320 32
+    texture: hitbox-wall
+
+  - position: 0 32
+    size: 32 224
+    texture: hitbox-wall
+
+  - position: 288 32
+    size: 32 224
+    texture: hitbox-wall
+
+  - position: 0 256
+    size: 200 64
+    texture: hitbox-wall
+
+  - position: 200 316
+    size: 48 8
+    texture: hitbox-wall
+
+  - position: 248 256
+    size: 72 64
+    texture: hitbox-wall
+
+doors:
+  - position: 200 260
+    size: 48 56
+    texture: hitbox-object
+    destination: 1 1
+
+objects:
+  - position: 32 32
+    size: 96 64
+    texture: hitbox-object
+    lore: "This is a bed... right?"

@@ -1,0 +1,9 @@
+---
+position:
+  x: 32.0
+  y: 32.0
+  height: 32.0
+  weight: 32.0
+
+texture:
+  hitbox-player

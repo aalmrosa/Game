@@ -11,7 +11,7 @@ import java.util.logging.Formatter;
 public class Log {
     private static final Logger logger = Logger.getLogger("com.game.demo.logic.Log");
 
-    public static void buildLogger(){
+    public static void build(){
         FileHandler fh;
         SimpleDateFormat sdf = new SimpleDateFormat("M-d_HH-mm-ss");
 

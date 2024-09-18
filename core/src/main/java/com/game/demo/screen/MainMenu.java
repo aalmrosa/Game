@@ -2,8 +2,9 @@ package com.game.demo.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.game.demo.Demo;
-import com.game.demo.level.Start;
+import com.game.demo.level.Level;
 
 public class MainMenu implements Screen {
     private final Demo game;
@@ -14,14 +15,20 @@ public class MainMenu implements Screen {
 
     @Override
     public void show() {
-        game.logger.info("Setting Main-Menu Screen");
+
     }
 
     @Override
     public void render(float delta) {
-        game.updateStart();
+        ScreenUtils.clear(0, 0, 0.2f, 1);
+        game.camera.update();
+        game.batch.setProjectionMatrix(game.camera.combined);
+
+        game.batch.begin();
         game.font.draw(game.batch, "Press [SPACE] to start", 8, 160-16);
-        game.updateEnd();
+        game.batch.end();
+
+        game.actionKeys.checkInput();
 
         if(Gdx.input.isKeyJustPressed(game.actionKeys.interact)){
             newGame();
@@ -54,8 +61,8 @@ public class MainMenu implements Screen {
     }
 
     private void newGame(){
-        game.logger.info("Starting new game");
-        game.setScreen(new Start(game));
+        game.setScreen(new Level(game));
+        game.level = new Level(game);
         dispose();
     }
 }

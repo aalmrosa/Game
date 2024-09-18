@@ -2,53 +2,48 @@ package com.game.demo.object;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 public class Character {
-    private Rectangle characterBounds;
-    private Vector2 characterPosition;
-    private Texture characterTexture;
-    private int characterSpeed;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
+    private Texture texture;
+    private int speed;
 
-    public Character(){
-        this.characterBounds = new Rectangle().setWidth(16).setHeight(16);
-        this.characterTexture = new Texture(Gdx.files.internal("hitbox-npc.png"));
-        this.characterPosition = new Vector2(0, 0);
-        this.characterSpeed = 80;
+    public Character() {}
+    public Character(float x, float y, float width, float height, Texture texture){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.texture = texture;
+        this.speed = 120;
     }
-    public Character(Vector2 characterPosition, Texture characterTexture){
-        this.characterBounds = new Rectangle().setWidth(16).setHeight(16);
-        this.characterPosition = characterPosition;
-        this.characterTexture = characterTexture;
-        this.characterSpeed = 80;
+    public static Character newPlayerCharacter() {
+        return new Character(32, 32, 32, 32, new Texture(Gdx.files.internal("files/images/hitbox-player.png")));
     }
 
-    public Direction move(){
-        return new Direction(this);
+    public void move(){
+
     }
-    public static class Direction{
-        private final Character character;
 
-        public Direction(Character character){
-            this.character = character;
-        }
+    public void setPosition(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 
-        public void north(){
-            character.setCharacterPosition(new Vector2(character.getCharacterPosition().x, character.getCharacterPosition().y + (character.getCharacterSpeed() * Gdx.graphics.getDeltaTime())));
-        }
-        public void south(){
-            character.setCharacterPosition(new Vector2(character.getCharacterPosition().x, character.getCharacterPosition().y - (character.getCharacterSpeed() * Gdx.graphics.getDeltaTime())));
-        }
-        public void east(){
-            character.setCharacterPosition(new Vector2(character.getCharacterPosition().x + (character.getCharacterSpeed() * Gdx.graphics.getDeltaTime()), character.getCharacterPosition().y));
-        }
-        public void west(){
-            character.setCharacterPosition(new Vector2(character.getCharacterPosition().x - (character.getCharacterSpeed() * Gdx.graphics.getDeltaTime()), character.getCharacterPosition().y));
-        }
+    @Setter
+    @Getter
+    private static class PlayerYaml {
+        private String x;
+        private String y;
+        private String width;
+        private String height;
+        private String texture;
     }
 }
