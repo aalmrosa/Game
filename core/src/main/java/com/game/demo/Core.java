@@ -16,10 +16,14 @@ import com.game.demo.screen.MainMenu;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Core extends Game {
+    public static final String TITLE = "Alpha";
+    public static final String VERSION = "v0.1";
+
     public Batch batch;
     public BitmapFont font;
     public OrthographicCamera camera;
-    public FitViewport viewport;
+    public FitViewport fitViewport;
+    public ExtendViewport extendViewport;
     public Character player;
     public ActionKeys actionKeys;
 
@@ -28,6 +32,7 @@ public class Core extends Game {
     @Override
     public void create() {
         Log.build();
+        Log.info(TITLE + " " + VERSION);
         Log.info("Initializing Game...");
 
         //tools
@@ -38,11 +43,13 @@ public class Core extends Game {
         //camera
         this.camera = new OrthographicCamera();
         this.camera.setToOrtho(false, 320, 320);
-        this.viewport = new FitViewport(320, 320, this.camera);
+        this.fitViewport = new FitViewport(320, 320, this.camera);
+        this.extendViewport = new ExtendViewport(320, 320, this.camera);
 
         //player
         this.player = Character.newPlayerCharacter();
         this.actionKeys = ActionKeys.getKeys();
+        this.actionKeys.setGame(this);
 
         Log.info("Game Started");
 

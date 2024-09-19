@@ -1,6 +1,7 @@
 package com.game.demo.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.game.demo.Core;
@@ -27,7 +28,7 @@ public class MainMenu implements Screen {
         game.batch.setProjectionMatrix(game.camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Press [SPACE] to start", 8, 160-16);
+        game.font.draw(game.batch, "Press [" + Input.Keys.toString(game.actionKeys.getInteract()) + "] to start", 8, 320-8);
         game.batch.end();
 
         game.actionKeys.checkInput();

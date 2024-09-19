@@ -28,7 +28,6 @@ public class Obstacle {
     //constructors
     public Obstacle() {}
     public Obstacle(String position, String size, String texture) {
-        Log.info(position);
         this.position = new Vector2(Integer.parseInt(position.split(" ")[0]), Integer.parseInt(position.split(" ")[1]));
         this.bounds = new Rectangle(this.position.x, this.position.y, Integer.parseInt(size.split(" ")[0]), Integer.parseInt(size.split(" ")[1]));
         this.texture = new Texture(Gdx.files.internal("files/images/" + texture + ".png"));

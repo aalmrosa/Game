@@ -2,6 +2,7 @@ package com.game.demo.logic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.game.demo.Core;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Setter
 @Getter
 public class ActionKeys {
+    private Core game;
     private int moveNorth;
     private int moveSouth;
     private int moveEast;
@@ -34,10 +36,18 @@ public class ActionKeys {
     }
 
     private void processInput(int key){
-        if(key == moveNorth){}
-        if(key == moveSouth){}
-        if(key == moveEast){}
-        if(key == moveWest){}
+        if(key == moveNorth){
+            game.player.move(game.level.levelDetails.getObstacles(), 0, 1);
+        }
+        if(key == moveSouth){
+            game.player.move(game.level.levelDetails.getObstacles(),0, -1);
+        }
+        if(key == moveEast){
+            game.player.move(game.level.levelDetails.getObstacles(), 1, 0);
+        }
+        if(key == moveWest){
+            game.player.move(game.level.levelDetails.getObstacles(), -1, 0);
+        }
         if(key == interact){}
         if(key == toggleMenu){}
     }
