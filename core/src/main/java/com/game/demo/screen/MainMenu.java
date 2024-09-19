@@ -3,13 +3,13 @@ package com.game.demo.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.game.demo.Demo;
+import com.game.demo.Core;
 import com.game.demo.level.Level;
 
 public class MainMenu implements Screen {
-    private final Demo game;
+    private final Core game;
 
-    public MainMenu(Demo game) {
+    public MainMenu(Core game) {
         this.game = game;
     }
 

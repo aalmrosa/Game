@@ -10,17 +10,17 @@ package com.game.demo.level;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.game.demo.Demo;
+import com.game.demo.Core;
 import com.game.demo.object.obstacles.Obstacle;
 
 public class Level implements Screen {
-    private Demo game;
+    private Core game;
 
     private String currentLevel;
 
     public LevelDetails levelDetails;
 
-    public Level(Demo game){
+    public Level(Core game){
         this.game = game;
         currentLevel = "main-menu";
 
@@ -47,7 +47,7 @@ public class Level implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        game.viewport.update(width, height);
     }
 
     @Override

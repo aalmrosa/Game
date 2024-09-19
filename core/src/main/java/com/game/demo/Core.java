@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.game.demo.logic.ActionKeys;
 import com.game.demo.logic.Log;
 import com.game.demo.logic.YamlReader;
@@ -13,8 +15,9 @@ import com.game.demo.level.Level;
 import com.game.demo.screen.MainMenu;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class Demo extends Game {
+public class Core extends Game {
     public OrthographicCamera camera;
+    public FitViewport viewport;
     public Batch batch;
     public BitmapFont font;
     public Character player;
@@ -33,6 +36,7 @@ public class Demo extends Game {
         this.font = new BitmapFont();
         this.camera = new OrthographicCamera();
         this.camera.setToOrtho(false, 320, 320);
+        this.viewport = new FitViewport(320, 320, this.camera);
         this.player = Character.newPlayerCharacter();
         this.actionKeys = new ActionKeys();
         setScreen(new MainMenu(this));

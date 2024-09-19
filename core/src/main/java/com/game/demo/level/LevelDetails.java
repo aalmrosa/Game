@@ -19,7 +19,7 @@ public class LevelDetails {
         LevelDetails levelDetails = new LevelDetails();
         levelDetails.levelName = levelName;
 
-        File file = new File("assets/files/levels/" + levelName + ".yml");
+        File file = new File("assets/files/data/levels/" + levelName + ".yml");
 
         try {
             levelDetails.obstacles = Obstacle.getObstacles(file);
