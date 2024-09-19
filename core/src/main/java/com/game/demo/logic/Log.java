@@ -16,7 +16,7 @@ public class Log {
         SimpleDateFormat sdf = new SimpleDateFormat("M-d_HH-mm-ss");
 
         try {
-            fh = new FileHandler("C:/Users/rosaa/IdeaProjects/Demo/assets/files/log/demo_log_" +
+            fh = new FileHandler("C:/Users/rosaa/IdeaProjects/Demo/assets/files/log/log_" +
                 sdf.format(Calendar.getInstance().getTime()) + ".log");
 
             fh.setFormatter(new Formatter() {

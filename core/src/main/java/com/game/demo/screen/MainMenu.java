@@ -5,11 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.game.demo.Core;
 import com.game.demo.level.Level;
+import com.game.demo.logic.Log;
 
 public class MainMenu implements Screen {
     private final Core game;
 
     public MainMenu(Core game) {
+        Log.info("Setting screen: start menu");
         this.game = game;
     }
 
@@ -30,7 +32,7 @@ public class MainMenu implements Screen {
 
         game.actionKeys.checkInput();
 
-        if(Gdx.input.isKeyJustPressed(game.actionKeys.interact)){
+        if(Gdx.input.isKeyJustPressed(game.actionKeys.getInteract())){
             newGame();
         }
     }
@@ -61,6 +63,7 @@ public class MainMenu implements Screen {
     }
 
     private void newGame(){
+        Log.info("Initializing a new game");
         game.setScreen(new Level(game));
         game.level = new Level(game);
         dispose();

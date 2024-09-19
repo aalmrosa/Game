@@ -16,10 +16,10 @@ import com.game.demo.screen.MainMenu;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Core extends Game {
-    public OrthographicCamera camera;
-    public FitViewport viewport;
     public Batch batch;
     public BitmapFont font;
+    public OrthographicCamera camera;
+    public FitViewport viewport;
     public Character player;
     public ActionKeys actionKeys;
 
@@ -28,17 +28,24 @@ public class Core extends Game {
     @Override
     public void create() {
         Log.build();
-        Log.info("Initializing Game Demo");
+        Log.info("Initializing Game...");
 
-        YamlReader.configure();
-
+        //tools
+        YamlReader.build();
         this.batch = new SpriteBatch();
         this.font = new BitmapFont();
+
+        //camera
         this.camera = new OrthographicCamera();
         this.camera.setToOrtho(false, 320, 320);
         this.viewport = new FitViewport(320, 320, this.camera);
+
+        //player
         this.player = Character.newPlayerCharacter();
-        this.actionKeys = new ActionKeys();
+        this.actionKeys = ActionKeys.getKeys();
+
+        Log.info("Game Started");
+
         setScreen(new MainMenu(this));
     }
 }

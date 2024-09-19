@@ -1,0 +1,7 @@
+---
+moveNorth: W
+moveSouth: S
+moveEast: D
+moveWest: A
+interact: E
+toggleMenu: ESC

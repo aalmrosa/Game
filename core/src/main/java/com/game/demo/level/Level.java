@@ -11,6 +11,7 @@ package com.game.demo.level;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.game.demo.Core;
+import com.game.demo.logic.Log;
 import com.game.demo.object.obstacles.Obstacle;
 
 public class Level implements Screen {
@@ -23,6 +24,8 @@ public class Level implements Screen {
     public Level(Core game){
         this.game = game;
         currentLevel = "main-menu";
+
+        Log.info("Loading level: " + currentLevel);
 
         levelDetails = LevelDetails.renderCurrentLevel(currentLevel);
     }

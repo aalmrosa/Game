@@ -36,10 +36,10 @@ public class Obstacle {
 
     //methods
     public static List<Obstacle> getObstacles(File file) throws Exception {
+        Log.info("Getting obstacles");
+
         List<Obstacle> obstacles = new ArrayList<>();
-
-        ObstacleRoot root = YamlReader.mapper.readValue(file, ObstacleRoot.class);
-
+        ObstacleDataRoot root = YamlReader.mapper.readValue(file, ObstacleDataRoot.class);
         root.getObstacles().forEach(obstacle -> {
             obstacles.add(new Obstacle(obstacle.getPosition(), obstacle.getSize(), obstacle.getTexture()));
         });
@@ -56,14 +56,14 @@ public class Obstacle {
     //nested classes
     @Setter
     @Getter
-    private static class ObstacleRoot {
+    private static class ObstacleDataRoot {
         @JsonProperty("obstacles")
-        private List<ObstacleYaml> obstacles;
+        private List<ObstacleData> obstacles;
     }
 
     @Setter
     @Getter
-    private static class ObstacleYaml {
+    private static class ObstacleData {
         private String position;
         private String size;
         private String texture;
