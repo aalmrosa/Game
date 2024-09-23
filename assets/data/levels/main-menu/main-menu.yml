@@ -1,38 +1,42 @@
 ---
 # OBSTACLES
 obstacles:
+  #bottom wall
   - position: 0 0
     size: 320 32
     texture: hitbox-wall
 
+  #middle wall 1
   - position: 0 32
     size: 32 224
     texture: hitbox-wall
 
+  #middle wall 2
   - position: 288 32
     size: 32 224
     texture: hitbox-wall
 
+  #top wall 1
   - position: 0 256
     size: 200 64
     texture: hitbox-wall
 
+  #top wall 2
   - position: 200 316
     size: 48 8
     texture: hitbox-wall
 
+  #top wall 3
   - position: 248 256
     size: 72 64
     texture: hitbox-wall
 
+# DOORS
 doors:
   - position: 200 260
     size: 48 56
     texture: hitbox-object
-    destination: 1 1
-
-objects:
-  - position: 32 32
-    size: 96 64
-    texture: hitbox-object
-    lore: "This is a bed... right?"
+    id: 1
+    destinationLevel: house
+    destinationPos: 208 28
+    facing: north

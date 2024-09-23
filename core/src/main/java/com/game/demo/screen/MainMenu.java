@@ -31,8 +31,6 @@ public class MainMenu implements Screen {
         game.font.draw(game.batch, "Press [" + Input.Keys.toString(game.actionKeys.getInteract()) + "] to start", 8, 320-8);
         game.batch.end();
 
-        game.actionKeys.checkInput();
-
         if(Gdx.input.isKeyJustPressed(game.actionKeys.getInteract())){
             newGame();
         }
@@ -65,8 +63,8 @@ public class MainMenu implements Screen {
 
     private void newGame(){
         Log.info("Initializing a new game");
-        game.setScreen(new Level(game));
         game.level = new Level(game);
+        game.setScreen(game.level);
         dispose();
     }
 }

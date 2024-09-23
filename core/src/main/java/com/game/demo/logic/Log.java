@@ -1,3 +1,8 @@
+/* 23/09/2024 - Gust
+ * Log class for application. Still needs upgrades such as auto-deletion excluding the last few files.
+ * Last updated: 23/09/2024 - Gust
+ */
+
 package com.game.demo.logic;
 
 import java.text.SimpleDateFormat;
@@ -9,14 +14,17 @@ import java.util.logging.Logger;
 import java.util.logging.Formatter;
 
 public class Log {
-    private static final Logger logger = Logger.getLogger("com.game.demo.logic.Log");
+    private static final Logger logger = Logger.getLogger("com.core.demo.logic.Log");
 
+    /**
+     * Defines structure format for data streamed to .log files
+     */
     public static void build(){
         FileHandler fh;
         SimpleDateFormat sdf = new SimpleDateFormat("M-d_HH-mm-ss");
 
         try {
-            fh = new FileHandler("C:/Users/rosaa/IdeaProjects/Demo/assets/files/log/log_" +
+            fh = new FileHandler("C:/Users/rosaa/IdeaProjects/Demo/assets/log/log_" +
                 sdf.format(Calendar.getInstance().getTime()) + ".log");
 
             fh.setFormatter(new Formatter() {
@@ -33,7 +41,7 @@ public class Log {
             });
             logger.addHandler(fh);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); //TODO: needs better handling
         }
     }
 

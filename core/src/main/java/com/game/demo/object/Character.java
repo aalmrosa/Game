@@ -1,3 +1,9 @@
+/* 23/09/2024 - Gust
+ * Class that contains code universal to all characters within the core. If it is player specific code,
+ * refer to Player.java.
+ * Last updated: 23/09/2024 - Gust
+ */
+
 package com.game.demo.object;
 
 import com.badlogic.gdx.Gdx;
@@ -16,11 +22,7 @@ public class Character {
     private float width;
     private float height;
     private Texture texture;
-    private float speed;
-    private float xSpeed;
-    private float ySpeed;
 
-    public Character() {}
     public Character(float x, float y, float width, float height, Texture texture){
         this.x = x;
         this.y = y;
@@ -31,15 +33,31 @@ public class Character {
         this.xSpeed = 0;
         this.ySpeed = 0;
     }
-    public static Character newPlayerCharacter() {
-        return new Character(32, 32, 32, 32, new Texture(Gdx.files.internal("files/images/hitbox-player.png")));
-    }
 
+// -------------------------------------------------------------------------------------------------------------- //
+// === CHARACTER MOVEMENT === //
+/*
+ * May create new file logic.Collision.java to store collision related code
+ */
+
+    //movement specific fields
+    private float speed;
+    private float xSpeed;
+    private float ySpeed;
+
+    /**
+     * Moves the character that calls this method towards the given x and y values if no collision with an obstacle
+     * within the level happens. If collision is detected, stops the character exactly at obstacle bounds.
+     * @param obstacles all obstacles a character can collide with within the level
+     * @param x position the character wants to move towards
+     * @param y position the character wants to move towards
+     */
     public void move(List<Obstacle> obstacles, float x, float y){
         this.xSpeed = x * speed * Gdx.graphics.getDeltaTime();
-        this.ySpeed = y * speed * Gdx.graphics.getDeltaTime(); //works as intended
+        this.ySpeed = y * speed * Gdx.graphics.getDeltaTime();
 
-        setPosition(this.x + xSpeed, this.y + ySpeed);
+        this.x = this.x + xSpeed;
+        this.y = this.y + ySpeed;
 
         //check if colliding
         for (Obstacle obstacle : obstacles) {
@@ -50,7 +68,6 @@ public class Character {
         }
     }
 
-    //character collision with obstacles
     /**
      * Collision is only detected if all the following statements are true:
      * <ol>
@@ -63,7 +80,7 @@ public class Character {
      *     <li>the bottom side of the character is below the top side of the obstacle</li>
      * </ol>
      * (results in vertical overlap of boundaries) <br>
-     * In a n-dimentional universe, if two entities overlap in all existent axis, then both entities are colliding.
+     * In an n-dimensional universe, if two entities overlap in all existent axis, then both entities are colliding.
      * @param obstacle entity that is being checked for collision
      * @return {@code true} if there was a collision detected, {@code false} otherwise
      */
@@ -80,36 +97,24 @@ public class Character {
     public void checkCollisionDirection(Obstacle obstacle) {
         //horizontal collision
         if (this.xSpeed > 0) { //going right
-            setPosition(obstacle.getBounds().x - this.width, this.y);
+            this.x = obstacle.getBounds().x - this.width;
             return;
         }
         if (this.xSpeed < 0){ //going left
-            setPosition(obstacle.getBounds().x + obstacle.getBounds().width, this.y);
+            this.x = obstacle.getBounds().x + obstacle.getBounds().width;
             return;
         }
 
         //vertical collision
         if (this.ySpeed > 0) { //going up
-            setPosition(this.x, obstacle.getBounds().y - this.height);
+            this.y = obstacle.getBounds().y - this.height;
             return;
         }
         if (this.ySpeed < 0) { //going down
-            setPosition(this.x, obstacle.getBounds().y + obstacle.getBounds().height);
+            this.y = obstacle.getBounds().y + obstacle.getBounds().height;
         }
     }
 
-    public void setPosition(float x, float y) {
-        this.x = x;
-        this.y = y;
-    }
+// -------------------------------------------------------------------------------------------------------------- //
 
-    @Setter
-    @Getter
-    private static class PlayerYaml {
-        private String x;
-        private String y;
-        private String width;
-        private String height;
-        private String texture;
-    }
 }

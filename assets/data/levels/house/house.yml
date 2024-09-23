@@ -1,0 +1,37 @@
+# OBSTACLES
+obstacles:
+  #bottom wall 1
+  - position: 0 0
+    size: 200 32
+    texture: hitbox-wall
+
+  #bottom wall 3
+  - position: 248 0
+    size: 72 32
+    texture: hitbox-wall
+
+  #middle wall 1
+  - position: 0 32
+    size: 32 224
+    texture: hitbox-wall
+
+  #middle wall 2
+  - position: 288 32
+    size: 32 224
+    texture: hitbox-wall
+
+  #top wall 3
+  - position: 0 256
+    size: 320 64
+    texture: hitbox-wall
+
+
+# DOORS
+doors:
+  - position: 200 0
+    size: 48 28
+    texture: hitbox-object
+    id: 1
+    destinationLevel: main-menu
+    destinationPos: 208 228
+    facing: south
